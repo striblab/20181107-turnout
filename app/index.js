@@ -51,4 +51,3 @@ chart2.render();
 chart3.render(1);
 chart4.render(2);
 map.render();
-
