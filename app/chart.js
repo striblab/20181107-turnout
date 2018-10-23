@@ -48,7 +48,7 @@ class Chart {
                     if (d.x == 2014) {
                         return 6;
                     } else {
-                        return 0;
+                        return 2;
                     }
                 }
             },

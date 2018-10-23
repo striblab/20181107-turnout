@@ -350,9 +350,18 @@ h2 {
   .red5 {
       color:#ffffff;
  }
-  .chart .c3-line {
+  .c3-target-Midterm .c3-line {
       stroke-width: 6px !important;
  }
+ .c3-lines-Presidential .c3-line {
+    stroke-width: 4px !important;
+  }
+  .c3-lines-Presidential .c3-circle {
+    opacity: 0 !important;
+  }
+  .chart .c3-circle {
+    stroke-width: 1px;
+  }
   .legendary {
       padding:4px;
       color: #fff;
@@ -1325,13 +1334,6 @@ h2 {
   fill: #000;
  /* font-size: 28px !important;
  */
-}
-.c3-target-Presidential .c3-line {
-  stroke-dasharray: 5,5 !important;
-  stroke-width: 2px !important;
-}
-.chart .c3-circle {
-  stroke-width: 4;
 }
 //breakpoints 
 @media (max-width:600px) {
