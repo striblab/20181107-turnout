@@ -880,8 +880,12 @@ h2 {
       color: #181818;
       font-size: 12px;
       background: transparent;
+     
       margin: 0 0px;
       height: 100%;
+ }
+ #rankChart, #rankChart2, #ageChart {
+    pointer-events:none !important;
  }
   .chart #header {
       min-height: 1px;

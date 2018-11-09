@@ -28,7 +28,7 @@ class Chart {
                 },
                 columns: [
                     ['x', 1950, 1952, 1954, 1956, 1958, 1960, 1962, 1964, 1966, 1968, 1970, 1972, 1974, 1976, 1978, 1980, 1982, 1984, 1986, 1988, 1990, 1992, 1994, 1996, 1998, 2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016, 2018, 2020, 2022],
-                    ['Midterm', 0.57, null, 0.61, null, 0.6, null, 0.62, null, 0.62, null, 0.62, null, 0.5, null, 0.58, null, 0.62, null, 0.48, null, 0.59, null, 0.55, null, 0.62, null, 0.65, null, 0.6, null, 0.56, null, 0.51, null, null, null],
+                    ['Midterm', 0.57, null, 0.61, null, 0.6, null, 0.62, null, 0.62, null, 0.62, null, 0.5, null, 0.58, null, 0.62, null, 0.48, null, 0.59, null, 0.55, null, 0.62, null, 0.65, null, 0.6, null, 0.56, null, 0.51, null, 0.642, null],
                     ['Presidential', null, 0.77, null, 0.83, null, 0.79, null, 0.76, null, 0.74, null, 0.70, null, 0.73, null, 0.72, null, 0.71, null, 0.69, null, 0.74, null, 0.67, null, 0.70, null, 0.79, null, 0.78, null, 0.76, null, 0.75, null, null, null]
                 ],
                 type: 'line',
@@ -45,7 +45,7 @@ class Chart {
             point: {
                 show: true,
                 r: function(d) {
-                    if (d.x == 2014) {
+                    if (d.x == 2018) {
                         return 6;
                     } else {
                         return 2;
@@ -99,7 +99,7 @@ class Chart {
             },
             tooltip: {
                 contents: function(d, defaultTitleFormat, defaultValueFormat, color) {
-                    return '<div class="chart-tooltip purple3"><span class="tooltip-label">' + d[0].id + ':</span>' +
+                    return '<div class="chart-tooltip gray5"><span class="tooltip-label">' + d[0].x + '</span></div><div class="chart-tooltip purple3"><span class="tooltip-label">' + d[0].id + ':</span>' +
                         '<span class="tooltip-value">' + defaultValueFormat(d[0].value) + '</span></div>' +
                         '<div class="chart-tooltip gray3"><span class="tooltip-label">' + d[1].id + ':</span>' +
                         '<span class="tooltip-value">' + defaultValueFormat(d[1].value) + '</span></div>'
