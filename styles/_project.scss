@@ -884,7 +884,7 @@ h2 {
       margin: 0 0px;
       height: 100%;
  }
- #rankChart, #rankChart2, #ageChart {
+ #rankChart, #rankChart2, #ageChart, #ageChart svg, .overlay {
     pointer-events:none !important;
  }
   .chart #header {
