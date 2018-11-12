@@ -120,10 +120,32 @@ $selector-wrapper: '.strib-styles.ssa.ssb.ssc';
 .purple3 {
   background-color:#8b62a8;
 }
+.gray1 {
+  fill: #ddd;
+  background-color: #ddd;
+  stroke: #ddd !important;
+}
+.gray2 {
+  fill: #CCC;
+  background-color: #CCC;
+  stroke: #CCC !important;
+}
 .gray3 {
-  color: white !important;
-  background-color:#999999;
-  pointer-events: all;
+  fill: #969696;
+  background-color: #969696;
+  stroke: #969696 !important;
+}
+.gray4 {
+  fill: #636363;
+  background-color: #636363;
+  color: #fff;
+  stroke: #636363 !important;
+}
+.gray5 {
+  fill: #252525;
+  background-color: #252525;
+  color: #fff;
+  stroke: #252525 !important;
 }
 .c3-target-Presidential .c3-line, {
   stroke-dasharray: 5,5;

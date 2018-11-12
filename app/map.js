@@ -65,6 +65,55 @@ class Map {
       }
     });
 
+    var tooltip = function(accessor) {
+      return function(selection) {
+          var tooltipDiv;
+          var bodyNode = d3.select('body').node();
+              selection.on("mouseover", function(d, i) {
+                  // Clean up lost tooltips
+                  d3.select('body').selectAll('div.tooltip').remove();
+                  // Append tooltip
+                  tooltipDiv = d3.select('body').append('div').attr('class', 'tooltip');
+                  // var absoluteMousePos = d3.mouse(bodyNode);
+                  // console.log(d3.event.pageX);
+                  // console.log(absoluteMousePos);
+                  tooltipDiv.style('left', (d3.event.pageX + 10) + 'px')
+                      .style('top', (d3.event.pageY - 15) + 'px')
+                      .style('position', 'absolute')
+                      .style('z-index', 1001);
+                  // Add text using the accessor function
+                  var tooltipText = accessor(d, i) || '';
+
+                  tooltipDiv.html(tooltipText);
+                  $("#tip").html(tooltipText);
+
+                  if (self._detect_mobile() == true) {
+                      $("#tip").show();
+                      // $(".key").hide();
+                  }
+                  // Crop text arbitrarily
+                  //tooltipDiv.style('width', function(d, i){return (tooltipText.length > 80) ? '300px' : null;})
+                  //    .html(tooltipText);
+              })
+              .on('mousemove', function(d, i) {
+                  // Move tooltip
+                  tooltipDiv.style('left', (d3.event.pageX + 10) + 'px')
+                      .style('top', (d3.event.pageY - 15) + 'px');
+
+              })
+              .on("mouseout", function(d, i) {
+                  // Remove tooltip
+                  tooltipDiv.remove();
+                  $("#tip").hide();
+                  // $(".key").show();
+                  $("#tip").html("");
+              }).on("mouseleave", function(){
+                  $(".shifter").removeClass("arrowselect");
+              }); 
+
+      };
+  };
+
     g.append("g")
         .attr("class", "precincts")
       .selectAll("path")
@@ -73,7 +122,7 @@ class Map {
         .attr("d", path)
         .attr("class", function(d) { return "precinct P" + d.properties.GEOID; })
         .attr("id", function(d) { return "P" + d.properties.GEOID; } )
-        .style("stroke-width", '0.3px')
+        .style("stroke-width", '0')
         .style("stroke","#ffffff")
         .style("fill",function(d) {
           return "#dddddd";
@@ -88,7 +137,7 @@ class Map {
         .attr("class", function(d) { return "county C" + d.properties.COUNTYFIPS; })
         .attr("id", function(d) { return "P" + d.properties.COUNTYFIPS; } )
         .style("stroke-width", '1')
-        .style("stroke","#000000")
+        .style("stroke","#ffffff")
         .style("fill",function(d) {
           var votes;
           for (var i=0; i < data.length; i++) {
@@ -98,31 +147,19 @@ class Map {
           }
           return self.colorScale(votes);
         })
-        .on("mouseover", function(d) {
-          var votes;
-          var total;
-          var color = "#000000";
-          for (var i=0; i < data.length; i++) {
-            if (d.properties.COUNTYNAME == data[i].county) {
-              votes = data[i].total_pct;
-              total = data[i].total_ab;
-            }
+      .call(tooltip(function(d, i) {
+        var votes;
+        var total;
+        var color = "#000000";
+        for (var i=0; i < data.length; i++) {
+          if (d.properties.COUNTYNAME == data[i].county) {
+            votes = data[i].total_pct;
+            total = data[i].total_ab;
           }
-          if (votes > 0.25) { color = "#ffffff"; }
-          tooltip.html("<div class='countyName'>" + d.properties.COUNTYNAME + "</div><div><span class='legendary' style='color:" + color + "; background-color:" + self.colorScale(votes) + ";'>" + d3.format(".1%")(votes) + "</span> of early votes</div><div>" + d3.format(",")(total) + " accepted ballots</div>");
-          $(".d3-tooltip").show();
-          tooltip.show();
-      })
-      .on("mouseout", function(d) {
-          tooltip.hide()
-      });
-
-        $("svg").mouseleave(function() {
-          $(".d3-tooltip").hide();
-        });
-
-        $(".tooltip").attr('style','font-family: "Benton Sans", Helvetica, Arial, sans-serif; background-color: #ffffff !important; height: auto !important; width: auto !important; color:#000000 !important; padding: 10px !important; opacity:1 !important; border-radius: 0 !important; border: 1px solid #000000 !important; font-size: 13px !important;');
-        $(".tooltip").addClass("thisTip");
+        }
+        if (votes > 0.25) { color = "#ffffff"; }
+        return "<div class='countyName'>" + d.properties.COUNTYNAME + "</div><div><span class='legendary' style='color:" + color + "; background-color:" + self.colorScale(votes) + ";'>" + d3.format(".1%")(votes) + "</span> of early votes</div><div>" + d3.format(",")(total) + " accepted ballots</div>";
+    }));
 
     var aspect = 500 / 550, chart = $(self.target + " svg");
       var targetWidth = chart.parent().width();
