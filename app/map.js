@@ -4,7 +4,7 @@ import * as d3tooltip from 'd3-tooltip';
 import * as topojson from 'topojson';
 import mncounties from '../sources/counties.json';
 import turnout from '../sources/turnout.json';
-import mnpct from '../sources/mnpct-small.json';
+import mnpct from '../sources/mnpct-turnout.json';
 
 class Map {
 
@@ -15,7 +15,7 @@ class Map {
     this.zoomed = false;
     this.scaled = $(target).width()/520;
     this.colorScale = d3.scaleLinear()
-    .domain([0, 0.2, 0.4])
+    .domain([0, 0.25, 0.5])
     .range(['#ffffff',"#8b62a8",'#271D42']);
   }
 
@@ -122,10 +122,24 @@ class Map {
         .attr("d", path)
         .attr("class", function(d) { return "precinct P" + d.properties.GEOID; })
         .attr("id", function(d) { return "P" + d.properties.GEOID; } )
-        .style("stroke-width", '0')
-        .style("stroke","#ffffff")
-        .style("fill",function(d) {
-          return "#dddddd";
+        .style("stroke-width", '1')
+        .style("stroke",function(d){
+          if (d.properties.turnout_DIFF < 0) {
+            return "#F2AF80";
+          } else if  (d.properties.turnout_DIFF > 0) {
+            return self.colorScale(d.properties.turnout_DIFF);
+          } else if  (d.properties.turnout_DIFF == 0) {
+            return "#dddddd";
+          }
+        })
+        .style("fill",function(d){
+          if (d.properties.turnout_DIFF < 0) {
+            return "#F2AF80";
+          } else if  (d.properties.turnout_DIFF > 0) {
+            return self.colorScale(d.properties.turnout_DIFF);
+          } else if  (d.properties.turnout_DIFF == 0) {
+            return "#dddddd";
+          }
         });
 
     g.append("g")

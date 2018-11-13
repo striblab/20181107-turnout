@@ -37,7 +37,11 @@ p {
   stroke-linecap: round !important;
 }
 .precinct {
-  stroke-width: 0 !important;
+  stroke-width: 1px !important;
+}
+.counties {
+    stroke-width: 2px !important;
+    stroke:#333333 !important;
 }
 .county {
   fill-opacity:0 !important;
