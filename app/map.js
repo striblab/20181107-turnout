@@ -17,6 +17,9 @@ class Map {
     this.colorScale = d3.scaleLinear()
     .domain([0, 0.25, 0.5])
     .range(['#ffffff',"#8b62a8",'#271D42']);
+    this.colorScale2 = d3.scaleLinear()
+    .domain([0, 0.5, 1])
+    .range(['#ffffff',"#8b62a8",'#271D42']);
   }
 
   /********** PRIVATE METHODS **********/
@@ -167,12 +170,11 @@ class Map {
         var color = "#000000";
         for (var i=0; i < data.length; i++) {
           if (d.properties.COUNTYNAME == data[i].county) {
-            votes = data[i].total_pct;
-            total = data[i].total_ab;
+            votes = data[i].TURNOUT18;
           }
         }
         if (votes > 0.25) { color = "#ffffff"; }
-        return "<div class='countyName'>" + d.properties.COUNTYNAME + "</div><div><span class='legendary' style='color:" + color + "; background-color:" + self.colorScale(votes) + ";'>" + d3.format(".1%")(votes) + "</span> of early votes</div><div>" + d3.format(",")(total) + " accepted ballots</div>";
+        return "<div class='countyName'>" + d.properties.COUNTYNAME + "</div><div><span class='legendary' style='color:" + color + "; background-color:" + self.colorScale2(votes) + ";'>" + d3.format(".1%")(votes) + "</span> turnout</div>";
     }));
 
     var aspect = 500 / 550, chart = $(self.target + " svg");
