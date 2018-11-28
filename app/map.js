@@ -126,6 +126,11 @@ class Map {
         .attr("class", function(d) { return "precinct P" + d.properties.GEOID; })
         .attr("id", function(d) { return "P" + d.properties.GEOID; } )
         .style("stroke-width", '1')
+        .style("opacity", function(d){
+
+          if (d.properties.turnout_DENSITY >= 0.8) { return d.properties.turnout_DENSITY; }
+          else { return d.properties.turnout_DENSITY - 0.1; }
+        })
         .style("stroke",function(d){
           if (d.properties.turnout_DIFF < 0) {
             return "#F2AF80";
