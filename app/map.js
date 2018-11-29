@@ -2,6 +2,7 @@ import 'intersection-observer';
 import * as d3 from 'd3';
 import * as d3tooltip from 'd3-tooltip';
 import * as topojson from 'topojson';
+import mncd from '../sources/mncd.json';
 import mncounties from '../sources/counties.json';
 import turnout from '../sources/turnout.json';
 import mnpct from '../sources/mnpct-turnout.json';
@@ -181,6 +182,18 @@ class Map {
         if (votes > 0.25) { color = "#ffffff"; }
         return "<div class='countyName'>" + d.properties.COUNTYNAME + "</div><div><span class='legendary' style='color:" + color + "; background-color:" + self.colorScale2(votes) + ";'>" + d3.format(".1%")(votes) + "</span> turnout</div>";
     }));
+
+    g.append("g")
+    .attr("class", "districts")
+  .selectAll("path")
+  .data(topojson.feature(mncd, mncd.objects.mncd).features)
+  .enter().append("path")
+    .attr("d", path)
+    .attr("class", function(d) { return "district"; })
+    .style("stroke-width", '1')
+    .style("stroke","#333333")
+    .style("opacity",0.5)
+    .style("fill","none");
 
     var aspect = 500 / 550, chart = $(self.target + " svg");
       var targetWidth = chart.parent().width();

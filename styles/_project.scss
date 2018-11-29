@@ -31,6 +31,9 @@ p {
 .elex-header .byline span {
   font-weight: normal;
 }
+.districts {
+    pointer-events:none !important;
+}
 .precincts {
   stroke-width: 0 !important;
   stroke-linejoin: round !important;
