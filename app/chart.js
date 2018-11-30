@@ -45,6 +45,10 @@ class Chart {
             point: {
                 show: true,
                 r: function(d) {
+                    if (d.id == "Presidential") {
+                        return 0;
+                    }
+
                     if (d.x == 2018) {
                         return 6;
                     } else {

@@ -62,7 +62,7 @@ class ageChart {
                     },
                 x: {
                   type: 'category',
-                  categories: ['18-35','36-50','51-65','66+','N/A'],
+                  categories: ['18-34','35-49','50-64','65+','N/A'],
                   padding: {right: 0, left: 0},
                         tick: {
                          rotate: -75,
