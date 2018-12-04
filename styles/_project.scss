@@ -121,12 +121,24 @@ h2 {
       margin-left:auto;
       margin-right:auto;
  }
-  .seat {
-      width:30px;
-      height:30px;
-      display:inline-block;
-      padding:7px 9px 5px 3px;
- }
+ .city-label {
+     z-index:10;
+    pointer-events: none;
+    font-size:0.3em !important;
+    text-anchor: middle;
+    fill: none !important;
+    stroke: #000000;
+    text-shadow: 0 0 3px #fff;
+    opacity:0.7 !important;
+}
+.label-bg {
+    pointer-events: none;
+    font-size:0.3em !important;
+    text-anchor: middle;
+    fill: none;
+    stroke: #ffffff;
+    opacity: 1;
+  }
   .seat:hover {
       opacity:0.8;
       cursor:default;
