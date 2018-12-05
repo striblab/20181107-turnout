@@ -13,6 +13,7 @@ class Map {
         this.target = target;
         this.svg = d3.select(target + " svg").attr("width", $(target).outerWidth()).attr("height", $(target).outerHeight());
         this.g = this.svg.append("g");
+        this.g2 = this.svg.append("g");
         this.zoomed = false;
         this.scaled = $(target).width() / 520;
         this.colorScale = d3.scaleLinear()
@@ -54,6 +55,7 @@ class Map {
 
         var svg = d3.select(self.target + " svg").attr("width", width).attr("height", height);
         var g = svg.append("g");
+        var g2 = svg.append("g");
         var tooltip = d3tooltip(d3);
 
         // self._render_legend();
@@ -210,7 +212,7 @@ class Map {
             .style("opacity", 0.5)
             .style("fill", "none");
 
-                    //City labels
+     //City labels
         var marks = [{
           long: -92.100485,
           lat: 46.786672,
@@ -244,7 +246,7 @@ class Map {
   ];
 
 
-  self.g.append('g').attr('class', 'labelbg').selectAll("text")
+  g.append('g').attr('class', 'labelbg').selectAll("text")
       .data(marks)
       .enter()
       .append("text")
@@ -259,7 +261,7 @@ class Map {
           return " " + d.name;
       });
 
-      self.g.append('g').attr('class', 'labels').selectAll("text")
+  g.append('g').attr('class', 'labels').selectAll("text")
           .data(marks)
           .enter()
           .append("text")
@@ -272,7 +274,7 @@ class Map {
           // .style("opacity",0)
           .text(function(d) {
               return " " + d.name;
-          });
+     });
 
         var aspect = 500 / 550,
             chart = $(self.target + " svg");

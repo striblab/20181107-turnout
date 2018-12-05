@@ -122,21 +122,22 @@ h2 {
       margin-right:auto;
  }
  .city-label {
-     z-index:10;
+    z-index:10;
     pointer-events: none;
-    font-size:0.3em !important;
+    font-size:0.4em !important;
     text-anchor: middle;
     fill: none !important;
-    stroke: #000000;
-    text-shadow: 0 0 3px #fff;
+    stroke: #222222;
+    font-weight:normal !important;
     opacity:0.7 !important;
 }
 .label-bg {
     pointer-events: none;
-    font-size:0.3em !important;
+    font-size:0.4em !important;
     text-anchor: middle;
     fill: none;
     stroke: #ffffff;
+    text-shadow: 0 0 3px #fff;
     opacity: 1;
   }
   .seat:hover {
@@ -1363,5 +1364,8 @@ h2 {
     section.container-lg, .slide, .container-lg {
         width:100%;
         max-width:100%;
+   }
+   .city-label, .label-bg {
+       display:none !important;
    }
   }
