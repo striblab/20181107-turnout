@@ -87,6 +87,9 @@ class Chart {
                     height: 40
                 }
             },
+            regions: [
+                {axis: 'x', start: 2002, end: 2014, class: 'regionDown'},
+            ],
             grid: {
                 focus: {
                     show: false
