@@ -106,10 +106,18 @@ class Chart {
             },
             tooltip: {
                 contents: function(d, defaultTitleFormat, defaultValueFormat, color) {
-                    return '<div class="chart-tooltip gray5"><span class="tooltip-label">' + d[0].x + '</span></div><div class="chart-tooltip purple3"><span class="tooltip-label">' + d[0].id + ':</span>' +
-                        '<span class="tooltip-value">' + defaultValueFormat(d[0].value) + '</span></div>' +
-                        '<div class="chart-tooltip gray3"><span class="tooltip-label">' + d[1].id + ':</span>' +
-                        '<span class="tooltip-value">' + defaultValueFormat(d[1].value) + '</span></div>'
+                    var string = "";
+
+                    if (d[0].value != null && d[0].value != 0) {
+                        string = string + '<div class="chart-tooltip gray5"><span class="tooltip-label">' + d[0].x + '</span></div><div class="chart-tooltip purple3"><span class="tooltip-label">' + d[0].id + ':</span>' +
+                        '<span class="tooltip-value">' + defaultValueFormat(d[0].value) + '</span></div>';
+                    }
+                    if (d[1].value != null && d[1].value != 0) {
+                        string = string + '<div class="chart-tooltip gray5"><span class="tooltip-label">' + d[0].x + '</span></div><div class="chart-tooltip gray3"><span class="tooltip-label">' + d[1].id + ':</span>' +
+                        '<span class="tooltip-value">' + defaultValueFormat(d[1].value) + '</span></div>';
+                    }
+
+                    return string;
                 }
             }
         });
