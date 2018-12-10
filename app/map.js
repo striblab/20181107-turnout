@@ -248,20 +248,20 @@ class Map {
   ];
 
 
-  g.append('g').attr('class', 'labelbg').selectAll("text")
-      .data(marks)
-      .enter()
-      .append("text")
-      .attr('class', function(d) {
-          return 'label-bg ' + d.name;
-      })
-      .attr("transform", function(d) {
-         return "translate(" + projection([d.long + 0.15, d.lat - 0.12]) + ")";
-      })
-      // .style("opacity",0)
-      .text(function(d) {
-          return " " + d.name;
-      });
+//   g.append('g').attr('class', 'labelbg').selectAll("text")
+//       .data(marks)
+//       .enter()
+//       .append("text")
+//       .attr('class', function(d) {
+//           return 'label-bg ' + d.name;
+//       })
+//       .attr("transform", function(d) {
+//          return "translate(" + projection([d.long + 0.15, d.lat - 0.12]) + ")";
+//       })
+//       // .style("opacity",0)
+//       .text(function(d) {
+//           return " " + d.name;
+//       });
 
   g.append('g').attr('class', 'labels').selectAll("text")
           .data(marks)
@@ -271,7 +271,7 @@ class Map {
               return 'city-label ' + d.name;
           })
           .attr("transform", function(d) {
-            return "translate(" + projection([d.long + 0.15, d.lat - 0.12]) + ")";
+            return "translate(" + projection([d.long, d.lat - 0.12]) + ")";
           })
           // .style("opacity",0)
           .text(function(d) {
