@@ -271,7 +271,7 @@ class Map {
               return 'city-label ' + d.name;
           })
           .attr("transform", function(d) {
-            return "translate(" + projection([d.long, d.lat - 0.12]) + ")";
+            return "translate(" + projection([d.long, d.lat - 0.10]) + ")";
           })
           // .style("opacity",0)
           .text(function(d) {
