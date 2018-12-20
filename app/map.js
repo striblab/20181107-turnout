@@ -134,8 +134,9 @@ class Map {
             })
             .style("stroke-width", '1')
             .style("opacity", function(d) {
-
-                if (d.properties.turnout_DENSITY >= 0.8) {
+                if (d.properties.turnout_DIFF == null) {
+                    return 0.4;
+                } else if (d.properties.turnout_DENSITY >= 0.8) {
                     return d.properties.turnout_DENSITY;
                 } else {
                     return d.properties.turnout_DENSITY - 0.1;
@@ -146,7 +147,7 @@ class Map {
                     return "#F2AF80";
                 } else if (d.properties.turnout_DIFF > 0) {
                     return self.colorScale(d.properties.turnout_DIFF);
-                } else if (d.properties.turnout_DIFF == 0) {
+                } else if (d.properties.turnout_DIFF == 0 || d.properties.turnout_DIFF == null) {
                     return "#dddddd";
                 }
             })
@@ -248,20 +249,20 @@ class Map {
   ];
 
 
-  g.append('g').attr('class', 'labelbg').selectAll("text")
-      .data(marks)
-      .enter()
-      .append("text")
-      .attr('class', function(d) {
-          return 'label-bg ' + d.name;
-      })
-      .attr("transform", function(d) {
-         return "translate(" + projection([d.long + 0.15, d.lat - 0.12]) + ")";
-      })
-      // .style("opacity",0)
-      .text(function(d) {
-          return " " + d.name;
-      });
+//   g.append('g').attr('class', 'labelbg').selectAll("text")
+//       .data(marks)
+//       .enter()
+//       .append("text")
+//       .attr('class', function(d) {
+//           return 'label-bg ' + d.name;
+//       })
+//       .attr("transform", function(d) {
+//          return "translate(" + projection([d.long + 0.15, d.lat - 0.12]) + ")";
+//       })
+//       // .style("opacity",0)
+//       .text(function(d) {
+//           return " " + d.name;
+//       });
 
   g.append('g').attr('class', 'labels').selectAll("text")
           .data(marks)
@@ -271,7 +272,7 @@ class Map {
               return 'city-label ' + d.name;
           })
           .attr("transform", function(d) {
-            return "translate(" + projection([d.long + 0.15, d.lat - 0.12]) + ")";
+            return "translate(" + projection([d.long, d.lat - 0.10]) + ")";
           })
           // .style("opacity",0)
           .text(function(d) {
